@@ -1,0 +1,36 @@
+.authContainer {
+    background-image: url("https://cdn.pixabay.com/photo/2022/12/26/11/37/crypto-7678815_1280.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bgBlur {
+    backdrop-filter: blur(10px);
+}
+
+.inputField {
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.button {
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

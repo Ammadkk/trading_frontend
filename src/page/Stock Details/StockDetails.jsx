@@ -77,7 +77,9 @@ const StockDetails = () => {
             
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>How much do you want to spend?</DialogTitle>
+              <DialogTitle className="text-center">
+                Convert Your Cash To Crypto!
+              </DialogTitle>
                 
               </DialogHeader>
               <TradingForm/>

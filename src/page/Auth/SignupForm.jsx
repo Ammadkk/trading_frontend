@@ -71,6 +71,7 @@ const SignupForm = () => {
                                 <FormControl>
                                     <Input
                                         // name="accountNumber"
+                                        type="password"
                                         className="border w-full text-white p-5"
                                         placeholder="Choose a strong password" {...field} />
                                 </FormControl>

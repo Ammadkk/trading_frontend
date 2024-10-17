@@ -57,6 +57,7 @@ const SigninForm = () => {
                                 <FormControl>
                                     <Input
                                         // name="accountNumber"
+                                        type="password"
                                         className="border w-full text-white p-5"
                                         placeholder="Your password" {...field} />
                                 </FormControl>

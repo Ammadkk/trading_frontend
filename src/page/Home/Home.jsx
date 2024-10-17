@@ -10,6 +10,10 @@ import { Input } from '@/components/ui/input'
 import { getCoinList, getTop50CoinList } from '@/State/Coin/Action'
 import { useDispatch, useSelector } from 'react-redux'
 import { store } from '@/State/Store'
+import { useParams } from 'react-router-dom'
+import { fetchCoinDetails } from '@/State/Coin/Action'
+
+
 
 import {
     Pagination,
@@ -25,11 +29,12 @@ import {
 const Home = () => {
     const[category,setCategory] = React.useState("all")
     const[inputValue,setInputValue] = React.useState("");
-    const[isBotRelease,setIsBotRelease] = React.useState(false);
+    // const[isBotRelease,setIsBotRelease] = React.useState(false);
     const {coin} = useSelector(store => store)
     const dispatch = useDispatch()
+    const {id} = useParams()
 
-    const handleBotRelease = () => setIsBotRelease(!isBotRelease);
+    // const handleBotRelease = () => setIsBotRelease(!isBotRelease);
 
     const handleCategory = (value) => {
         setCategory(value)
@@ -57,6 +62,15 @@ const Home = () => {
 
     },[category])
 
+
+
+    useEffect(()=>{
+        dispatch(fetchCoinDetails({coinId:id,jwt:localStorage.getItem("jwt")}))
+        console.log("Coin details:", coin.coinDetails);
+        // dispatch(getUserWatchlist(localStorage.getItem("jwt")))
+    
+      },[id])
+
     
   return (
     <div className='relative'>
@@ -79,7 +93,7 @@ const Home = () => {
                     Top 50
                     </Button>
 
-                    <Button onClick={()=>handleCategory("topGainers")}
+                    {/* <Button onClick={()=>handleCategory("topGainers")}
                     variant={category=="topGainers" ? "default": "outline"} 
                     className="rounded-full"
                     >
@@ -91,7 +105,7 @@ const Home = () => {
                     className="rounded-full"
                     >
                     Top Losers
-                    </Button>
+                    </Button> */}
 
 
                 </div>
@@ -121,20 +135,21 @@ const Home = () => {
                 <div className="flex gap-5 items-center">
                     <div>
                         <Avatar className="h-8 w-8 flex items-center">
-                            <AvatarImage src={"https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628"}/>
+                            {/* <AvatarImage src={"https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628"}/> */}
+                            <AvatarImage src={coin.coinDetails?.image.large}/>
                         </Avatar>
                     </div>
                     <div>
                     <div className="flex items-center gap-2">
-                        <p>ETH</p>
+                        <p>{coin.coinDetails?.symbol.toUpperCase()}</p>
                         <DotIcon className="text-gray-400"/>
-                        <p className="text-gray-400">Ethereum</p>
+                        <p className="text-gray-400">{coin.coinDetails?.name}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                        <p className="text-xl font-bold">2759.95</p>
+                        <p className="text-xl font-bold">${coin.coinDetails?.market_data.current_price.usd}</p>
                         <p className="text-red-600">
-                            <span>331945083776</span>
-                            <span>(3.761%)</span>
+                            <span>{coin.coinDetails?.market_data.market_cap_change_24h}</span>
+                            <span>({coin.coinDetails?.market_data.market_cap_change_percentage_24h}%)</span>
                         </p>
                     </div>
                     </div>
@@ -142,7 +157,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-        <section className="absolute border-5 right-5 z-40 flex flex-col justify-end items-end bottom-4">
+        {/* <section className="absolute border-5 right-5 z-40 flex flex-col justify-end items-end bottom-4">
 
             {isBotRelease&& <div className="rounded-md w-[20rem] md:w-[25rem] lg:w-[25rem] h-[70vh] bg-slate-900">
                 <div className="flex justify-between items-center border-b px-6 h-[12%]">
@@ -204,7 +219,7 @@ const Home = () => {
 
             </div>
 
-        </section>
+        </section> */}
         
     </div>
   )

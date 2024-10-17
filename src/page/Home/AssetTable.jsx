@@ -43,7 +43,7 @@ const AssetTable = ({coin,category}) => {
       {/* <TableCell>
       {item.price_change_percentage_24h !== null && item.price_change_percentage_24h !== undefined ? item.price_change_percentage_24h : 'N/A'}
       </TableCell> */}
-
+{/*  */}
       <TableCell className="text-right">${item.current_price}</TableCell>
     </TableRow>)}
 

@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { store } from './State/Store'
 import { useEffect } from 'react'
 import { getUser } from './State/Auth/Action'
+import { TooltipProvider } from '@radix-ui/react-tooltip'
+
 
 function App() {
 
@@ -56,3 +58,6 @@ function App() {
 }
 
 export default App
+
+
+

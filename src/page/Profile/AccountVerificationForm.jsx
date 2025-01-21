@@ -16,7 +16,7 @@ const AccountVerificationForm = () => {
         <div className="space-y-5 mt-10 w-full">
             <div className="flex justify-between items-center">
                 <p>Email : </p>
-                <p>ammadk@gmail.com</p>
+                <p>kevin0@gmail.com</p>
                 <Dialog>
                     <DialogTrigger>
                         <Button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Sent OTP</Button>

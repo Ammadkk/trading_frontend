@@ -63,7 +63,7 @@ const TransferForm = () => {
         onChange={handleChange}
         value={formData.purpose}
         className="py-7"
-        placeholder="Gift for your friend"
+        placeholder="Miscellaneous.."
         />
       </div>
 

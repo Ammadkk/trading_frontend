@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { DialogClose } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { withdrawalRequest } from '@/State/Withdrawal/Action'
-import React from 'react'
+import { withdrawalRequest, getPaymentDetails } from '@/State/Withdrawal/Action'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 
 const WithdrawalForm = () => {
 
@@ -15,21 +16,27 @@ const WithdrawalForm = () => {
     setAmount(e.target.value)
 
   }
-// akhir mai ye naam khud se rakkha hai,submit bhi hoskta tha 
+// name is acc to my understanding
 
   const handleWithdraw = () => {
     dispatch(withdrawalRequest({amount,jwt:localStorage.getItem("jwt")}))
     console.log(amount)
   }
 
+  useEffect(() => {
+    if (!withdrawal.paymentDetails) {
+      dispatch(getPaymentDetails({ jwt: localStorage.getItem("jwt") }))
+    }
+  }, [dispatch, withdrawal.paymentDetails])
+
   return (
     <div className="pt-10 space-y-5">
       <div className="flex justify-between items-center rounded-md bg-slate-900 text-xl font-bold px-5 py-4">
         <p>Available Balance</p>
-        <p>$9000</p>
+        <p>${wallet.userWallet.balance}</p>
       </div>
       <div className="flex flex-col items-center">
-        <h1>Enter Withdrawal Amount</h1>
+        <h1 className='pb-3'>Enter Withdrawal Amount</h1>
         <div className="flex items-center justify-center">
           <Input
             onChange={handleChange}
@@ -46,7 +53,11 @@ const WithdrawalForm = () => {
           <img className="h-8 w-8" src="https://cdn.pixabay.com/photo/2020/02/18/11/03/bank-4859142_1280.png" alt="" />
           <div>
             <p className="text-xl font-bold">{withdrawal.paymentDetails?.bankName}</p>
-            <p className="text-xs">{withdrawal.paymentDetails?.accountNumber}</p>
+            <p className="text-xs">
+              {withdrawal.paymentDetails?.accountNumber
+                ? `*******${withdrawal.paymentDetails?.accountNumber.slice(7)}`
+                : ''}
+            </p>
           </div>
         </div>
       </div>

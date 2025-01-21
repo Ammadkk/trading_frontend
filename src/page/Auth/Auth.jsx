@@ -41,7 +41,7 @@ const Auth = () => {
               <section className="w-full">
                 <SigninForm/>
                 <div className="flex items-center justify-center">
-                  <span>If you dont have an account</span>
+                  <span>Dont have an account?</span>
                   <Button onClick={()=> navigate("/signup")} variant="ghost">
                     Signup</Button>
 

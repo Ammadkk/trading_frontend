@@ -39,8 +39,11 @@ const Activity = () => {
       <TableHead>Buy Price</TableHead>
       <TableHead>Selling price</TableHead>
       <TableHead>Order Type</TableHead>
-      <TableHead className="text-right">Profit/Loss</TableHead>
-      <TableHead className="text-right">Value</TableHead>
+      {/* <TableHead className="text-right">Profit/Loss</TableHead> */}
+      <TableHead className="text-right w-1/6">Profit/Loss</TableHead>
+      {/* <TableHead className="text-right">Value</TableHead> */}
+      <TableHead className="text-right w-1/5">Value</TableHead>
+
 
 
     </TableRow>

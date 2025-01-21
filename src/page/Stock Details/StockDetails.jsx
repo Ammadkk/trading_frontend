@@ -12,6 +12,8 @@ import { fetchCoinDetails } from '@/State/Coin/Action'
 import { store } from '@/State/Store'
 import { addItemToWatchlist, getUserWatchlist } from '@/State/Watchlist/Action'
 import { existInWatchlist } from '@/utils/existInWatchlist'
+import Swal from 'sweetalert2';
+
 
 const StockDetails = () => {
 
@@ -28,9 +30,34 @@ const StockDetails = () => {
 
   },[id])
 
-  const handleAddToWatchlist=()=>{
-    dispatch(addItemToWatchlist({coinId: coin.coinDetails?.id,jwt: localStorage.getItem("jwt")}))
-  }
+  const handleAddToWatchlist = () => {
+    dispatch(addItemToWatchlist({coinId: coin.coinDetails?.id, jwt: localStorage.getItem("jwt")}))
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: `${coin.coinDetails?.name} has been added to your watchlist!`,
+          timer: 3000, // Auto close after 3 seconds
+          showConfirmButton: false,
+          background: '#333', // Customize based on your theme
+          color: '#fff', // Text color for dark background
+          iconColor: '#00ff00', // Optional: Customize the icon color
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to add to watchlist:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Failed to add ${coin.coinDetails?.name} to your watchlist.`,
+          timer: 3000, // Auto close after 3 seconds
+          showConfirmButton: false,
+          background: '#333',
+          color: '#fff',
+          iconColor: '#ff0000', // Optional: Customize the error icon color
+        });
+      });
+  };
 
   return (
     <div className="p-t mt-5">

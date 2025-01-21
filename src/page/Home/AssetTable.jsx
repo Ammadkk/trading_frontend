@@ -31,9 +31,16 @@ const AssetTable = ({coin,category}) => {
   <TableBody>
     {coin.map((item,index)=> <TableRow key={item.id}>
       <TableCell onClick={()=> navigate(`/market/${item.id}`)} className="font-medium flex items-center gap-2">
-        <Avatar className="-z-50">
+        {/* <Avatar className="-z-50">
             <AvatarImage src={item.image} className="w-8 h-8 rounded-full"/>
-        </Avatar>
+        </Avatar> */}
+        <Avatar className="w-8 h-8">
+                  <AvatarImage 
+                    src={item.image} 
+                    alt={`${item.name} logo`} 
+                    className="object-contain w-full h-full rounded-full" 
+                  />
+                </Avatar>
         <span>{item.name}</span>
       </TableCell>
       <TableCell>{item.symbol}</TableCell>

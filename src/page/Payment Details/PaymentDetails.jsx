@@ -25,7 +25,9 @@ const PaymentDetails = () => {
             JS Bank
           </CardTitle>
           <CardDescription>
-            A/C no: {withdrawal.paymentDetails?.accountNumber}
+            A/C no:{ withdrawal.paymentDetails?.accountNumber
+            ?  ` *******${withdrawal.paymentDetails?.accountNumber.slice(7)}`
+            : ''}
           </CardDescription>
         </CardHeader>
         <CardContent>
